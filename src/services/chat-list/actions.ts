@@ -1,13 +1,10 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { TChatList, TCheckWhatsapp, TLoginData } from "../../utils/types";
+
 import { requestApi } from "../../utils/request-api";
+import { TChatList, TCheckWhatsapp, TLoginData } from "../../utils/types";
 import {
-    API_GET_CHATS,
-    API_WA_INSTANCE,
-    EApiMethod,
-    CONTENT_TYPE_DATA,
-    ELocalStorageState,
-    API_CHECK_WHATSAPP,
+    API_CHECK_WHATSAPP, API_GET_CHATS, API_WA_INSTANCE, CONTENT_TYPE_DATA, EApiMethod,
+    ELocalStorageState
 } from "../../utils/vars";
 
 const REDUCER_NAME = "chat_list";
@@ -42,7 +39,7 @@ export const GET_CHAT_LIST = createAsyncThunk<TChatList>(
 // ===== проверяем наличие аккаунта WhatsApp нового диалога ======
 // ===============================================================
 
-type TData = { phoneNumber: number; id: string; name: string };
+type TData = { phoneNumber: number; id: string; name: string; };
 
 export const СHECK_NEW_DIALOG = createAsyncThunk(
     `${REDUCER_NAME}/check_new_dialog`,

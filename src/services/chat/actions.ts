@@ -1,22 +1,12 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
-import {
-    TLoginData,
-    TMessageIncoming,
-    TMessageSending,
-    TMessagesList,
-    TNoticeBody,
-} from "../../utils/types";
+
 import { requestApi } from "../../utils/request-api";
 import {
-    API_GET_CHAT_HISTORY,
-    API_SEND_MESSAGE,
-    API_WA_INSTANCE,
-    EApiMethod,
-    CONTENT_TYPE_DATA,
-    ELocalStorageState,
-    EMessageSender,
-    EMessageType,
-    EMessageStatus,
+    TLoginData, TMessageIncoming, TMessageSending, TMessagesList, TNoticeBody
+} from "../../utils/types";
+import {
+    API_GET_CHAT_HISTORY, API_SEND_MESSAGE, API_WA_INSTANCE, CONTENT_TYPE_DATA, EApiMethod,
+    ELocalStorageState, EMessageSender, EMessageStatus, EMessageType
 } from "../../utils/vars";
 
 const REDUCER_NAME = "chat";
@@ -35,13 +25,13 @@ export const GET_CHAT = createAsyncThunk<TMessagesList, string>(
             token: localStorage.getItem(ELocalStorageState.TOKEN) || "",
         };
 
-        const bodySend = { chatId: sendData, count: 100 };
+        const bodySend = { chatId: sendData, count: 1000 };
 
         const response = await requestApi(
             API_WA_INSTANCE +
-                authData.id +
-                API_GET_CHAT_HISTORY +
-                authData.token,
+            authData.id +
+            API_GET_CHAT_HISTORY +
+            authData.token,
             {
                 method: EApiMethod.POST,
                 headers: {
